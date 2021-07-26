@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Editor from "./Editor";
 import TabNav from "./Tabs";
-import data from "../../helpers/data";
-import { Table, Button } from "antd";
+import data from "../../../helpers/data";
+import { Table } from "antd";
 import { CSVDownloader } from "react-papaparse";
 
 const columns = data.data[0]
@@ -97,7 +97,7 @@ const Workspace = ({ activeContent, setActiveContent, execStatus ,saveState, new
             </div>
             <div className="result-container">
               {execStatus === "Idle" ? (
-                <div class='no-run-text'>No Results! Click Run Button To Execute Query</div>
+                <div className='no-run-text'>No Results! Click Run Button To Execute Query</div>
               ) : (
                 <>
                   {execStatus === "Run" ? (
@@ -109,7 +109,7 @@ const Workspace = ({ activeContent, setActiveContent, execStatus ,saveState, new
                       />
                     </>
                   ) : (
-                    <div class='no-run-text'>Query Execution Stopped! Re-Run to find out the results</div>
+                    <div className='no-run-text'>Query Execution Stopped! Re-Run to find out the results</div>
                   )}
                 </>
               )}
@@ -119,7 +119,7 @@ const Workspace = ({ activeContent, setActiveContent, execStatus ,saveState, new
             <div className="error-heading">Status</div>
             <div className="result-container">
               {execStatus === "Idle" ? (
-                <div class='no-run-text'>No Status! Click Run Button To See the Status Of Query</div>
+                <div className='no-run-text'>No Status! Click Run Button To See the Status Of Query</div>
               ) : (
                 <>
                   {execStatus === "Run" ? (
@@ -132,7 +132,7 @@ const Workspace = ({ activeContent, setActiveContent, execStatus ,saveState, new
                       />
                     </>
                   ) : (
-                    <div class='no-run-text'>Query Execution Stopped! Re-Run to find out the status</div>
+                    <div className='no-run-text'>Query Execution Stopped! Re-Run to find out the status</div>
                   )}
                 </>
               )}

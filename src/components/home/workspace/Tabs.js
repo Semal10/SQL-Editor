@@ -1,4 +1,3 @@
-import { useState , useEffect} from "react";
 import { Tabs } from "antd";
 import "antd/dist/antd.css";
 
@@ -13,10 +12,6 @@ const TabNav = ({
   setMap,
   setActiveContent
 }) => {
-
-  // useEffect(() => {
-  //   localStorage.setItem('map',JSON.stringify(map));
-  // }, [map]);
 
   const onChange = (activeKey) => {
     setActiveKey(activeKey);
@@ -81,7 +76,6 @@ const TabNav = ({
       ))}
     </Tabs>
   );
-  //}
 };
 
 export default TabNav;

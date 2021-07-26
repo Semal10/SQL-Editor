@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
-import Home from "./Workspace/Home";
-import '../main.css'
+import Navbar from "../navbar/Navbar";
+import Home from "../home/Home";
+import '../../main.css';
 
 function App() {
 
