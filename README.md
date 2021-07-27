@@ -1,7 +1,7 @@
 ## Page Load Time
 
-DOMContentLoad : 1.31s
-Page Load : 257ms
+DOMContentLoad : 926ms
+Page Load : 995ms
 
 ## Calculation of Page Load Time
 
@@ -13,7 +13,7 @@ So what i did is i checked the DOMContentLoad & Page Load Speed in Network by cl
 
 2) Using React Dev Tools in Lighthouse
 
-There is a button in Lighthouse Tab which generates us the whole report regarding performance, SEO , accessibility, and reliabilty. I scored 92+ in all of the above and also stored the page load speed in performance review.
+There is a button in Lighthouse Tab which generates us the whole report regarding performance, SEO , accessibility, and reliabilty. I scored 94 in Performance, 96 in Accessibility & 100 in Best Practices & SEO. Also stored the page load speed in performance review.
 
 Lasting i took the average of all the above methods , and stated it to be my final DOMContentLoad & Page Load time.
 
