@@ -17,5 +17,8 @@ There is a button in Lighthouse Tab which generates us the whole report regardin
 
 Lasting i took the average of all the above methods , and stated it to be my final DOMContentLoad & Page Load time.
 
+## Optimization
+
+Used debounce function to avoid unnecessary re-renders and save the time.
 
 

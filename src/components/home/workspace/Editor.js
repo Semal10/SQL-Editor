@@ -1,10 +1,11 @@
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback, useRef, useMemo } from "react";
 import { message } from "antd";
 import { basicSetup } from "@codemirror/basic-setup";
 import { EditorState } from "@codemirror/state";
 import { defaultTabBinding } from "@codemirror/commands";
 import { EditorView, keymap } from "@codemirror/view";
 import { sql } from "@codemirror/lang-sql";
+import debounce from "lodash.debounce";
 import "./editor.css";
 
 const Editor = ({
@@ -16,6 +17,11 @@ const Editor = ({
   saveState,
 }) => {
   const editor = useRef();
+
+  const debouncedSave = useCallback(
+		debounce(value => setActiveContent(value), 1000),
+		[]
+	);
 
   const saveKeyHandler = useCallback(
     (e) => {
@@ -43,7 +49,8 @@ const Editor = ({
         content: value,
       };
       if (saveState === "Auto") setMap(updatedMap);
-      setActiveContent(value);
+      //const debouncedSave = debounce(() => setActiveContent(value), 1000);
+		  debouncedSave(value);
     }, [activeContent, activeKey, map, saveState, setMap, setActiveContent]);
 
   useEffect(() => {
