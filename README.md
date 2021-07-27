@@ -21,4 +21,16 @@ Lasting i took the average of all the above methods , and stated it to be my fin
 
 Used debounce function to avoid unnecessary re-renders and save the time.
 
+## Features
+
+* Highly Featured Code Editor (with Syntax Highlight & AutoComplete)
+* Save & Copy your work
+* Download CSV & SQL Files to send to your business and tech team respectively
+* Work on multiple code editors with feature of auto save
+* Run the sql query to display beautiful structured table
+* Mobile Responsive
+
+## Live Demo
+[SQL Editor](https://relaxed-meninsky-8d83f3.netlify.app/)
+
 
