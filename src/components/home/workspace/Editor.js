@@ -25,7 +25,6 @@ const Editor = ({
       ) {
         e.preventDefault();
         if (saveState === "Custom") {
-          console.log(activeContent);
           let updatedMap = { ...map };
           updatedMap[activeKey] = { ...map[activeKey], content: activeContent };
           setMap(updatedMap);
@@ -33,7 +32,7 @@ const Editor = ({
         }
       }
     },
-    [activeContent, map, saveState]
+    [activeContent, activeKey, map, saveState, setMap]
   );
   
   const autoSaveHandler = useCallback(
@@ -45,7 +44,7 @@ const Editor = ({
       };
       if (saveState === "Auto") setMap(updatedMap);
       setActiveContent(value);
-    }, [activeContent, map, saveState]);
+    }, [activeContent, activeKey, map, saveState, setMap, setActiveContent]);
 
   useEffect(() => {
     document.addEventListener("keydown", saveKeyHandler);
