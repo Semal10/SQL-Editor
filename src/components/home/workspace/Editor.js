@@ -1,9 +1,11 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { message } from "antd";
-import { UnControlled as CodeMirror } from "react-codemirror2";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/xq-light.css";
-require("codemirror/mode/sql/sql");
+import { basicSetup } from "@codemirror/basic-setup";
+import { EditorState } from "@codemirror/state";
+import { defaultTabBinding } from "@codemirror/commands";
+import { EditorView, keymap } from "@codemirror/view";
+import { sql } from "@codemirror/lang-sql";
+import "./editor.css";
 
 const Editor = ({
   activeKey,
@@ -13,53 +15,71 @@ const Editor = ({
   setActiveContent,
   saveState,
 }) => {
+  const editor = useRef();
 
-  const saveKeyHandler = useCallback((e) => {
-    if (
-      e.keyCode === 83 &&
-      (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
-    ) {
-      e.preventDefault();
-      if (saveState === "Custom") { 
-        console.log(activeContent);
-        let updatedMap = { ...map };
-        updatedMap[activeKey] = { ...map[activeKey], content: activeContent };
-        setMap(updatedMap);
-        message.success("Saved!");
+  const saveKeyHandler = useCallback(
+    (e) => {
+      if (
+        e.keyCode === 83 &&
+        (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
+      ) {
+        e.preventDefault();
+        if (saveState === "Custom") {
+          console.log(activeContent);
+          let updatedMap = { ...map };
+          updatedMap[activeKey] = { ...map[activeKey], content: activeContent };
+          setMap(updatedMap);
+          message.success("Saved!");
+        }
       }
-    }
-  },[activeContent]);
+    },
+    [activeContent, map, saveState]
+  );
+  
+  const autoSaveHandler = useCallback(
+    (value) => {
+      let updatedMap = { ...map };
+      updatedMap[activeKey] = {
+        ...map[activeKey],
+        content: value,
+      };
+      if (saveState === "Auto") setMap(updatedMap);
+      setActiveContent(value);
+    }, [activeContent, map, saveState]);
 
   useEffect(() => {
-
     document.addEventListener("keydown", saveKeyHandler);
     return () => {
       document.removeEventListener("keydown", saveKeyHandler);
-    }
+    };
   }, [saveKeyHandler]);
 
-  const options = {
-    mode: "text/x-sql",
-    theme: "xq-light",
-    lineNumbers: true,
-  };
-
-  const onChange = (editor, data, value) => {
-    let updatedMap = { ...map };
-    updatedMap[activeKey] = { ...map[activeKey], content: value };
-    if (saveState === "Auto") setMap(updatedMap);
-    setActiveContent(value);
-  };
-
-  
+  useEffect(() => {
+    const state = EditorState.create({
+      doc: map[activeKey].content,
+      extensions: [
+        basicSetup,
+        keymap.of([defaultTabBinding]),
+        sql(),
+        EditorView.updateListener.of((v) => {
+          if (v.docChanged) {
+            const value = v.state.doc.text[0];
+            autoSaveHandler(value);
+          }
+        }),
+      ],
+    });
+    let view = new EditorView({
+      state,
+      parent: editor.current,
+    });
+    return () => {
+      view.destroy();
+    };
+  }, [saveState, activeKey]);
 
   return (
-    <CodeMirror
-      className="custom-editor-style"
-      value={map[activeKey].content}
-      options={options}
-      onChange={onChange}
-    />
+    <div ref={editor} className="custom-editor"></div>
   );
 };
 

@@ -1,15 +1,16 @@
 import React from "react";
-import { Button , message} from "antd";
+import { Button, message } from "antd";
+import { HamburgerOpen, HamburgerClose } from "../../icons";
+import "./navbar.css";
 
-const Navbar = ({ setExecStatus, saveState, setSaveState }) => {
+const Navbar = ({ setExecStatus, saveState, setSaveState , open, setOpen }) => {
   const handleSaveButton = () => {
     if (saveState === "Custom") {
-        setSaveState("Auto");
-        message.success('Auto Save Enabled!');
-    }
-    else {
-        setSaveState("Custom");
-        message.success('Auto Save Disabled!');
+      setSaveState("Auto");
+      message.success("Auto Save Enabled!");
+    } else {
+      setSaveState("Custom");
+      message.success("Auto Save Disabled!");
     }
   };
 
@@ -19,7 +20,19 @@ const Navbar = ({ setExecStatus, saveState, setSaveState }) => {
 
   return (
     <div className="navbar">
-      <span className="navbar-heading">SQL Editor</span>
+      <div className="nav-left">
+        {window.innerWidth<=600 ? (
+          <div
+            className='hamburger'
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            {open ? <HamburgerClose /> : <HamburgerOpen />}
+          </div>
+        ) : <></> }
+        <span className="navbar-heading">SQL Editor</span>
+      </div>
       <div className="run-buttons">
         <Button type="primary" onClick={handleSaveButton}>
           {saveState === "Custom" ? "Auto" : "Custom"}Save

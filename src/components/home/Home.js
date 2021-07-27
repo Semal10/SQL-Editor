@@ -11,7 +11,7 @@ const mapKeyToContent = {
   },
 };
 
-const Home = ({ execStatus, saveState }) => {
+const Home = ({ execStatus, saveState , open }) => {
   const [newTabIndex, setNewTabIndex] = useLocalStorage("newindex", 1);
   const [activeKey, setActiveKey] = useLocalStorage("activeKey", 0);
   const [map, setMap] = useLocalStorage("map", mapKeyToContent);
@@ -27,6 +27,7 @@ const Home = ({ execStatus, saveState }) => {
         setMap={setMap}
         saveState={saveState}
         activeKey={activeKey}
+        open={open}
       />
       <Workspace
         activeContent={activeContent}

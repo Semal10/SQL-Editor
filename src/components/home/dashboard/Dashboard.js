@@ -2,8 +2,9 @@ import React from "react";
 import { message} from "antd";
 import CollapseContent from "./Collapse";
 import { Save, Copy, Download} from "../../../icons";
+import './dashboard.css'
 
-const Dashboard = ({ activeContent, map, setMap, saveState, activeKey}) => {
+const Dashboard = ({ activeContent, map, setMap, saveState, activeKey, open}) => {
 
   const download = (content, filename, contentType) => {
     if (!contentType) contentType = "application/sql";
@@ -35,7 +36,7 @@ const Dashboard = ({ activeContent, map, setMap, saveState, activeKey}) => {
   }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard"style={!open?{ position:'absolute', left:'-250px', opacity:'0'}:{left:'0px',opacity:'1',transition: 'all 3s ease'}}>
       <div className="dashboard-nav">
         <div className="save-button" onClick={handleSaveButton}>
           <Save />

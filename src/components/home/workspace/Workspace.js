@@ -4,6 +4,7 @@ import TabNav from "./Tabs";
 import data from "../../../helpers/data";
 import { Table } from "antd";
 import { CSVDownloader } from "react-papaparse";
+import './workspace.css'
 
 const columns = data.data[0]
   .filter((_, idx) => {

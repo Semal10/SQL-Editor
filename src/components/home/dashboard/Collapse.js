@@ -1,6 +1,7 @@
 import React from "react";
 import { Collapse } from "antd";
 import {Database, Tables, Table } from "../../../icons";
+import './dashboard.css'
 
 const { Panel } = Collapse;
 

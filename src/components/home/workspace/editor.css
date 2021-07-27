@@ -1,0 +1,32 @@
+.cm-editor {
+  background: white;
+  font-size: 16px;
+  height: 100%;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-editor .cm-gutters {
+  background-color: #cbd5e1;
+  width: 40px;
+}
+
+.cm-editor .cm-activeLineGutter {
+  background-color: #cbd5e1;
+}
+
+.cm-editor .cm-content {
+  padding: 8px 0;
+}
+
+.cm-editor .cm-gutter {
+  color: #4672a8;
+}
+
+.custom-editor {
+  height: calc(100vh - 92px);
+  overflow-y: auto;
+  overflow-x: auto;
+}

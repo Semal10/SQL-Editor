@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@codemirror/basic-setup": "^0.18.1",
+    "@codemirror/commands": "^0.18.2",
+    "@codemirror/lang-sql": "^0.18.0",
+    "@codemirror/state": "^0.18.7",
+    "@codemirror/view": "^0.18.12",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
